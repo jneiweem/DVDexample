@@ -1,0 +1,60 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  background-color: rgba(1,1,1,.6);">
+  <img src="dvd.png" style="width:50px;height:50px;">
+</div>
+
+<script>
+
+var velocityx = 5;
+var velocityy = 3;
+var positionx = 0;
+var positiony = 0;
+var directionx = false;
+var directiony = false;
+var ball = document.getElementById('ball');
+
+// YOUR CODE 
+//move ball
+function moveBall(){
+  //change direction once x it hits 400px
+  if ((positionx > 400) || (positionx < 0)){
+    directionx = !directionx;
+    let random = randomColor();
+    ball.style.backgroundColor = "rgba("+random+",.6)";
+  }
+  
+  if (directionx == false){
+    positionx = positionx + velocityx;
+  }else if (directionx == true){
+    positionx = positionx - velocityx;
+  }
+
+  //change direction once y hits 300px
+  if ((positiony > 300) || (positiony < 0)){
+    directiony = !directiony;
+    let random = randomColor();
+    ball.style.backgroundColor = "rgba("+random+",.6)";
+  }
+
+  if (directiony == false){
+    positiony = positiony + velocityy;
+  }else if (directiony == true){
+    positiony = positiony - velocityy;
+  }
+
+  ball.style.left = positionx + 'px';
+  ball.style.top = positiony + 'px';
+}
+
+function randomColor(){
+  let r = Math.floor(Math.random()*255+1);
+  let b = Math.floor(Math.random()*255+1);
+  let g = Math.floor(Math.random()*255+1);
+  return [r,b,g];
+}
+setInterval(moveBall,25);
+</script>
